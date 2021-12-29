@@ -11,3 +11,5 @@ The server generates images given an algorithm
 e.g. `https://square1.vercel.app/svg?algorithm=/(3,0)/` gives
 
 <img src="https://square1.vercel.app/svg?algorithm=/(3,0)/" >
+
+![/(3,0)/](<https://square1.vercel.app/svg?algorithm=/(3,0)/>)

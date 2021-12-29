@@ -1,6 +1,6 @@
 # Square1
 
-API for generating square 1 diagrams
+server for generating square 1 diagrams
 
 # Usage
 

@@ -8,8 +8,12 @@ The server generates images given an algorithm
 
 [`https://square1.vercel.app/svg?algorithm=`](https://square1.vercel.app/svg?algorithm=) will give you a square as the `algorithm` is blank
 
-e.g. `https://square1.vercel.app/svg?algorithm=/(3,0)/` gives
+e.g. [`https://square1.vercel.app/svg?algorithm=/(3,0)/`](<https://square1.vercel.app/svg?algorithm=/(3,0)/>) gives
 
-<img src="https://square1.vercel.app/svg?algorithm=/(3,0)/" >
+[![/(3,0)/](<https://square1.vercel.app/svg?algorithm=/(3,0)/>)](<https://square1.vercel.app/svg?algorithm=/(3,0)/>)
 
-![/(3,0)/](<https://square1.vercel.app/svg?algorithm=/(3,0)/>)
+## Download
+
+attach `&d=true` at the end of the url
+
+e.g. `https://square1.vercel.app/svg?algorithm=/(3,0)/&d=true`

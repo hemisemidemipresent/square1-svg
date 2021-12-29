@@ -17,3 +17,7 @@ e.g. [`https://square1.vercel.app/svg?algorithm=/(3,0)/`](<https://square1.verce
 attach `&d=true` at the end of the url
 
 e.g. `https://square1.vercel.app/svg?algorithm=/(3,0)/&d=true`
+
+## Note
+
+it **does not** display permutations that are **not slashable** (e.g. `(2,0)`)

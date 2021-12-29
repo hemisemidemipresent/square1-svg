@@ -8,7 +8,7 @@ app.get('/:algorithm:d', (req, res) => {
     const Square1 = require('./square1');
     let alg = req.query.algorithm;
     let d = req.query.d; //isDownload
-    if (!alg) alg = '';
+    if (!alg || typeof alg != 'string') alg = '';
     if (alg.length > 200) return res.send('input algorithm too long');
     try {
         let sq = new Square1(alg);

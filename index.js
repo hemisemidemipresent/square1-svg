@@ -18,7 +18,7 @@ app.get('/:algorithm:d', (req, res) => {
             res.send(svg);
         } else {
             let fileContents = Buffer.from(svg, 'utf-8');
-            fileName = alg.replaceAll('/', 'slice') + '.svg';
+            let fileName = (alg.length == 0 ? 'sq1' : alg.replaceAll('/', 'slice')) + '.svg';
             res.writeHead(200, {
                 'Content-Disposition': `attachment; filename="${fileName}"`,
                 'Content-Type': 'image/svg'

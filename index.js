@@ -19,6 +19,9 @@ app.get('/:algorithm', (req, res) => {
         res.send('invalid algorithm');
     }
 });
+app.get('/', (req, res) => {
+    res.redirect('https://github.com/hemisemidemipresent/square1/blob/main/README.md');
+});
 app.listen(port, () => {
     console.log(`App running on port ${port}.`);
 });

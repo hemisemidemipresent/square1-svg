@@ -97,7 +97,7 @@ class Square1 {
         const r = 10;
         // top
         let svg =
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox = "0 0 30 60" height="50vh" width="25vh">';
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox = "0 0 30 60" height="300" width="150">';
 
         svg += '<g transform="translate(15 15)">';
         let angle = 15;

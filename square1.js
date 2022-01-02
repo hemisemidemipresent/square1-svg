@@ -152,17 +152,5 @@ class Square1 {
         svg += '</svg>';
         return svg;
     }
-    toPNG() {
-        let svg = this.toSVG().trim();
-        let s = await svg2png({
-            input: svg,
-            encoding: 'dataURL',
-            format: 'jpeg',
-            width: 100,
-            height: 100,
-            multiplier: 0.7,
-            quality: 0.5
-        });
-    }
 }
 module.exports = Square1;

@@ -1,15 +1,18 @@
 const regex = /\([-]?[0-6],[-]?[0-6]\)/;
+const svg2png = require('svg-png-converter');
+
 class Square1 {
-    constructor(alg) {
+    constructor(alg, config) {
+        if (config) var { rotation, png } = config;
         this.tPieces = [2, 1, 2, 1, 2, 1, 2, 1];
         this.bPieces = [2, 1, 2, 1, 2, 1, 2, 1];
+        this.tRot = 0;
+        this.bRot = 0;
         let instructions = this.parseAlg(alg);
 
-        instructions.forEach((instruction) => {
-            // console.log(top.pieces);
-            // console.log(bottom.pieces);
+        instructions.forEach((instruction, i) => {
             if (typeof instruction == 'string') this.slice();
-            else this.shift(instruction);
+            else this.shift(instruction, instructions.length == i + 1);
         });
     }
     parseAlg(alg) {
@@ -69,8 +72,14 @@ class Square1 {
         }
         return pieceCount;
     }
-    shift(instruction) {
+    shift(instruction, isFinal = false) {
         let { top, bottom } = instruction;
+
+        if (isFinal) {
+            this.tRot = top * 30;
+            this.bRot = -bottom * 30;
+            return;
+        }
         let t = this.check(this.tPieces, -top);
         let b = this.check(this.bPieces, bottom);
         this.tPieces = this.move(this.tPieces, t);
@@ -94,13 +103,13 @@ class Square1 {
         }
     }
     toSVG() {
-        const r = 10;
-        // top
+        const r = 10; // "radius" of square (1/2 side length)
         let svg =
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox = "0 0 30 60" height="300" width="150">';
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox = "0 0 30 60" height="300" width="150"><style>polygon{stroke-width:0.25;stroke:black;stroke-linejoin:round;}</style>'; //fill:white;
+        // top
 
         svg += '<g transform="translate(15 15)">';
-        let angle = 15;
+        let angle = this.tRot + 15;
         for (let i = 0; i < this.tPieces.length; i++) {
             let piece = this.tPieces[i];
             if (piece == 1) {
@@ -121,7 +130,7 @@ class Square1 {
         svg += '</g>';
 
         svg += '<g transform="translate(15 45)">';
-        angle = 15;
+        angle = -this.bRot + 180 - 15;
         for (let i = 0; i < this.bPieces.length; i++) {
             let piece = this.bPieces[i];
             if (piece == 1) {
@@ -134,14 +143,26 @@ class Square1 {
                 let h = x * Math.sqrt(3) * 0.5;
                 let points = `0,0 ${-offset},${-h} 0,${-Math.sqrt(2) * r} ${offset},${-h}`;
                 svg += `<polygon points="${points}" stroke-width="0.25" stroke="black" stroke-linejoin="round" transform="rotate(${
-                    angle + 15
+                    angle - 15
                 })" fill="white"/>`;
             }
-            angle += piece * 30;
+            angle -= piece * 30;
         }
         svg += '</g>';
         svg += '</svg>';
         return svg;
+    }
+    toPNG() {
+        let svg = this.toSVG().trim();
+        let s = await svg2png({
+            input: svg,
+            encoding: 'dataURL',
+            format: 'jpeg',
+            width: 100,
+            height: 100,
+            multiplier: 0.7,
+            quality: 0.5
+        });
     }
 }
 module.exports = Square1;

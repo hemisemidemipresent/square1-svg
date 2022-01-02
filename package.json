@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/hemisemidemipresent/square1#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "svg-png-converter": "^0.0.9"
   }
 }

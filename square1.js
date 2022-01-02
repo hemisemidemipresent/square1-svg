@@ -1,5 +1,4 @@
 const regex = /\([-]?[0-6],[-]?[0-6]\)/;
-const svg2png = require('svg-png-converter');
 
 class Square1 {
     constructor(alg, config) {
